@@ -8,10 +8,12 @@ import com.wzb.arshome.view.MyGridView;
 
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,48 +74,28 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 			// TODO Auto-generated method stub
-			Intent intent = new Intent();
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			//Intent intent = new Intent();
+			//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			
 			switch (arg2) {
-			case 3:
+			case 0:
 			
-				startActivity(intent);
-				break;
-			case 4:
-				//intent.setClass(MainActivity.this, UserManagerActivity.class);
-				startActivity(intent);
-				break;
-			case 5:
-				//intent.setClass(MainActivity.this, LoginNewActivity.class);
 				//startActivity(intent);
-				for (Activity activity : WApplication.activityList) {
-					activity.finish();
-				}
-				finish();
-				System.exit(0);
-				System.gc();
-				break;
-			case 2:
-				
-			
-				startActivity(intent);
-				break;
-			case 0:// read data
-				
-	
-				startActivity(intent);
 				break;
 			case 1:
-				 //intent.setClass(MainActivity.this, SimpleActivity.class);
+				Intent settingintent = new Intent();
+				settingintent.setAction(Settings.ACTION_SETTINGS);  
 				
+				startActivity(settingintent);
+				break;
+			case 2:
+				startApp("com.android.soundrecorder","com.android.soundrecorder.SoundRecorder");
+				break;
+			case 3:
 				
-				startActivity(intent);
+				startApp("com.mediatek.camera","com.android.camera.CameraActivity");
 				break;
-			case 6:
-				//intent.setClass(MainActivity.this, ApplicationSetting.class);
-				startActivity(intent);
-				break;
+
 			default:
 				break;
 			}
@@ -121,11 +103,20 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		}
 
 	}
+	
+	private void startApp(String packageName,String className){
+		Intent intent = new Intent();
+		ComponentName comp = new ComponentName(packageName,className);
+		intent.setComponent(comp);
+		intent.setAction("android.intent.action.MAIN");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+	}
 
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		super.onBackPressed();
+		//super.onBackPressed();
 		return;
 	}
 
