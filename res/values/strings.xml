@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">arshome</string>
+     <string name="add">Add:</string>
+    <string name="exit_dialog">Press again to exit</string>
+    <string name="home_page">常用功能</string>
+
+</resources>

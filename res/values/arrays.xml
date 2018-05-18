@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="img_text" translatable="false">
+        <item>翻译</item>
+        <item>设置</item>
+        <item>录音</item>
+        <item>相机</item>
+     
+    </string-array>
+   
+       
+
+</resources>
