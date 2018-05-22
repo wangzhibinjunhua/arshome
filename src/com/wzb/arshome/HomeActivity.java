@@ -66,6 +66,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	
 		titleView = (TextView) findViewById(R.id.title_text);
 		titleView.setText(getString(R.string.home_page));
+		titleView.setVisibility(View.GONE);
 
 	}
 
@@ -85,7 +86,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 			case 1:
 				Intent settingintent = new Intent();
 				settingintent.setAction(Settings.ACTION_SETTINGS);  
-				
+				settingintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(settingintent);
 				break;
 			case 2:
@@ -105,12 +106,18 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	}
 	
 	private void startApp(String packageName,String className){
-		Intent intent = new Intent();
-		ComponentName comp = new ComponentName(packageName,className);
-		intent.setComponent(comp);
-		intent.setAction("android.intent.action.MAIN");
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
+		try {
+			Intent intent = new Intent();
+			ComponentName comp = new ComponentName(packageName,className);
+			intent.setComponent(comp);
+			intent.setAction("android.intent.action.MAIN");
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	@Override
