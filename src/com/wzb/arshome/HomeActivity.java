@@ -82,6 +82,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 			case 0:
 			
 				//startActivity(intent);
+				startApp("com.jachat.jachatcloudsample","com.jachat.jachatcloudsample.MainActivity");
 				break;
 			case 1:
 				Intent settingintent = new Intent();
