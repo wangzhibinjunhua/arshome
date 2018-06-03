@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +50,25 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.activity_home);
 
 		initView();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+			Log.e("wzb",""+event.getRepeatCount());
+			if(event.getRepeatCount() ==40){
+				gotoHome();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	private void gotoHome(){
+		
+		sendBroadcast(new Intent("com.android.custom.launcher3"));
+		Log.e("wzb","gotoHome");
 	}
 
 	private void initView() {
